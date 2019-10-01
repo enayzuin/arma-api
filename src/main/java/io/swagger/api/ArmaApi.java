@@ -32,7 +32,8 @@ public interface ArmaApi {
 			@ApiResponse(code = 400, message = "Alteração inválida."),
 			@ApiResponse(code = 401, message = "Alteração não autorizada."),
 			@ApiResponse(code = 500, message = "Erro interno ao tentar realizar a alteração.") })
-	@RequestMapping(value = "/arma/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/arma/{id}", produces = { "application/json" }, consumes = {
+			"application/json" }, method = RequestMethod.PUT)
 	ResponseEntity<Arma> alteraArma(@ApiParam(value = "Id da arma.", required = true) @PathVariable("id") Integer id,
 			@ApiParam(value = "", required = true) @Valid @RequestBody Arma arma);
 
@@ -43,7 +44,8 @@ public interface ArmaApi {
 			@ApiResponse(code = 400, message = "Alteração de status invalida."),
 			@ApiResponse(code = 401, message = "Alteração de status não autorizada."),
 			@ApiResponse(code = 500, message = "Erro interno ao tentar realizar a altereção de status.") })
-	@RequestMapping(value = "/arma/{status}/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/arma/{status}/{id}", produces = { "application/json" }, consumes = {
+			"application/json" }, method = RequestMethod.PUT)
 	ResponseEntity<Arma> alteraStatusPorId(
 			@ApiParam(value = "Status da arma.", required = true, allowableValues = "\"ativo\", \"cofre\"") @PathVariable("status") String status,
 			@ApiParam(value = "Numero do id da arma.", required = true) @PathVariable("id") Integer id);
@@ -55,7 +57,8 @@ public interface ArmaApi {
 			@ApiResponse(code = 400, message = "Cadastro inválido."),
 			@ApiResponse(code = 401, message = "Cadastro não autorizado"),
 			@ApiResponse(code = 500, message = "Erro interno ao tentar realizar o cadastro.") })
-	@RequestMapping(value = "/arma", method = RequestMethod.POST)
+	@RequestMapping(value = "/arma", produces = { "application/json" }, consumes = {
+			"application/json" }, method = RequestMethod.POST)
 	ResponseEntity<Arma> cadastraNova(@ApiParam(value = "", required = true) @Valid @RequestBody Arma arma);
 
 	@ApiOperation(value = "Consulta uma arma existente por Id.", nickname = "consultaPorId", notes = "Essa consulta tem como objetivo consultar uma arma existente por Id.", response = Arma.class, tags = {
@@ -66,7 +69,8 @@ public interface ArmaApi {
 			@ApiResponse(code = 401, message = "Consulta não autorizada"),
 			@ApiResponse(code = 404, message = "Nenhuma arma encontrada para a consulta por Id."),
 			@ApiResponse(code = 500, message = "Erro interno ao tentar consultar por Id") })
-	@RequestMapping(value = "/arma/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/arma/{id}", produces = { "application/json" }, consumes = {
+			"application/json" }, method = RequestMethod.GET)
 	ResponseEntity<Arma> consultaPorId(
 			@ApiParam(value = "Numero do Id da arma.", required = true) @PathVariable("id") Integer id);
 
@@ -78,17 +82,19 @@ public interface ArmaApi {
 			@ApiResponse(code = 401, message = "Consulta não autorizada."),
 			@ApiResponse(code = 404, message = "Nenhuma arma encontrada para a pesquisa."),
 			@ApiResponse(code = 500, message = "Erro interno ao tentar realizar a consulta por raridade.") })
-	@RequestMapping(value = "/arma/consulta/{raridade}", method = RequestMethod.GET)
+	@RequestMapping(value = "/arma/consulta/{raridade}", produces = { "application/json" }, consumes = {
+			"application/json" }, method = RequestMethod.GET)
 	ResponseEntity<Arma> consultaPorRaridade(
 			@ApiParam(value = "Raridade da arma", required = true) @PathVariable("raridade") String raridade);
 
 	@ApiOperation(value = "Exclui uma arma existente.", nickname = "excluiExistente", notes = "Essa operção tem como objetivo exluir uma arma existente.", tags = {
 			"Exclusao", })
-	@ApiResponses(value = { @ApiResponse(code = 204, message = "Sucesso ao excluir uma arma existente."),	
+	@ApiResponses(value = { @ApiResponse(code = 204, message = "Sucesso ao excluir uma arma existente."),
 			@ApiResponse(code = 400, message = "Exclusão inválida."),
 			@ApiResponse(code = 401, message = "Exclusão não autorizada."),
 			@ApiResponse(code = 500, message = "Erro interno ao tentar fazer a exclusão.") })
-	@RequestMapping(value = "/arma/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/arma/{id}", produces = { "application/json" }, consumes = {
+			"application/json" }, method = RequestMethod.DELETE)
 	ResponseEntity<Void> excluiExistente(
 			@ApiParam(value = "Numero do Id da arma.", required = true) @PathVariable("id") Integer id);
 

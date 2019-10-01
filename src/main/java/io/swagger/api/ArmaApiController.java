@@ -1,12 +1,13 @@
 package io.swagger.api;
 
-import io.swagger.model.Arma;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.swagger.annotations.*;
-import io.swagger.api.dao.ArmaDAO;
+import java.net.URI;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,18 +15,13 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.net.URI;
-import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import io.swagger.annotations.ApiParam;
+import io.swagger.api.dao.ArmaDAO;
+import io.swagger.model.Arma;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-09-19T18:58:26.782Z")
 
@@ -36,13 +32,13 @@ public class ArmaApiController implements ArmaApi {
 
 	private final ObjectMapper objectMapper;
 	private final HttpServletRequest request;
+	@Autowired
 	private ArmaDAO armaDAO;
 
 	@org.springframework.beans.factory.annotation.Autowired
 	public ArmaApiController(ObjectMapper objectMapper, HttpServletRequest request) {
 		this.objectMapper = objectMapper;
 		this.request = request;
-		this.armaDAO = new ArmaDAO();
 	}
 
 	public ResponseEntity<Arma> alteraArma(
@@ -100,20 +96,20 @@ public class ArmaApiController implements ArmaApi {
 
 			if (ehValido(arma)) {
 
-			 armaDAO.salva(arma);
+				armaDAO.salva(arma);
 
-				}else {
-					responseEntity = new ResponseEntity<Arma>(HttpStatus.BAD_REQUEST);
-				}
+			} else {
+				responseEntity = new ResponseEntity<Arma>(HttpStatus.BAD_REQUEST);
+			}
 
-				URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-						.buildAndExpand(arma.getId()).toUri();
+			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(arma.getId())
+					.toUri();
 
-				MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
-				headers.add("location", location.getPath());
+			MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
+			headers.add("location", location.getPath());
 
-				responseEntity = new ResponseEntity<Arma>(null, headers, HttpStatus.CREATED);
-			 
+			responseEntity = new ResponseEntity<Arma>(null, headers, HttpStatus.CREATED);
+
 		} catch (Exception e) {
 			log.error("Falha ao tentar cadastrar cliente.", e);
 			responseEntity = new ResponseEntity<Arma>(HttpStatus.INTERNAL_SERVER_ERROR);

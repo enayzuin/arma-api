@@ -20,8 +20,8 @@ public class DBConfiguration extends HikariConfig {
 	DataSource dataSource() throws SQLException {
 		this.setDataSourceClassName("com.microsoft.sqlserver.jdbc.SQLServerDataSource");
 		this.setUsername("sa");
-		this.setPassword("sa");
-		this.addDataSourceProperty("url", "jdbc:sqlserver://LAPTOP-C84MP720:1433;databaseName=FORTNITE");
+		this.setPassword("@Enay59aw55Zuin");
+		this.addDataSourceProperty("url", "jdbc:sqlserver://192.168.1.104:1433;databaseName=FORTNITE");
 		HikariDataSource ds = new HikariDataSource(this);
 		return ds;
 	}
