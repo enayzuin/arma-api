@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.threeten.bp.LocalDate;
 import org.threeten.bp.OffsetDateTime;
 
 import io.swagger.entity.ArmaEntity;
