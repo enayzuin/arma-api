@@ -4,15 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.OffsetDateTime;
 
+import io.swagger.entity.ArmaEntity;
 import io.swagger.model.Arma;
 import io.swagger.model.Arma.TipoEnum;
+import io.swagger.repository.ArmaRepository;
 
 public class ArmaDAO {
 
 	private static List<Arma> armas; 
+	
+	@Autowired private ArmaRepository armaRepository;
+	
+	
 	
 	public ArmaDAO() {
 		armas = new ArrayList<Arma>();
@@ -23,15 +30,13 @@ public class ArmaDAO {
 		return armas;
 	}
 	
-	public Arma salva(Arma arma) {
+	public void salva(Arma arma) {
 		
-		arma.setId(generatetId());
-		arma.setDtAtualizacao(OffsetDateTime.now());
-		arma.status(true);
+		ArmaEntity armaEntity = new ArmaEntity();
 		
-		armas.add(arma);
-		
-		return arma;
+		armaEntity.setNome(arma.getNome());
+		armaRepository.save(armaEntity);
+
 	}
 	
 	public boolean exclui(Integer id) {
