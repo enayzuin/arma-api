@@ -1,7 +1,7 @@
 package io.swagger.model;
 
 import java.util.Objects;
-import io.swagger.model.Arma;
+import io.swagger.model.ArmaDto;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-09-19T18:58:26.782Z")
 
-public class Armas extends ArrayList<Arma>  {
+public class Armas extends ArrayList<ArmaDto>  {
 
   @Override
   public boolean equals(java.lang.Object o) {

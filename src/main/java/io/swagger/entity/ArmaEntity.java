@@ -1,6 +1,7 @@
 package io.swagger.entity;
 
 import java.io.Serializable;
+import org.threeten.bp.OffsetDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,6 +28,9 @@ public class ArmaEntity implements Serializable {
 	@Column(name = "dano")
 	private Integer dano;
 
+	@Column(name = "dt_att")
+	private OffsetDateTime dataAtualizacao;
+
 	public Long getId() {
 		return id;
 	}
@@ -50,7 +54,14 @@ public class ArmaEntity implements Serializable {
 	public void setDano(Integer dano) {
 		this.dano = dano;
 	}
-	
+
+	public OffsetDateTime getDataAtualizacao() {
+		return dataAtualizacao;
+	}
+
+	public void setDataAtualizacao(OffsetDateTime dataAtualizacao) {
+		this.dataAtualizacao = dataAtualizacao;
+	}
 	
 
 }
