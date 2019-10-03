@@ -35,14 +35,6 @@ public class ArmaEntity implements Serializable {
 		this.id = id;
 	}
 
-	public String getDano() {
-		return nome;
-	}
-
-	public void setDano(Integer dano) {
-		this.dano = dano;
-	}
-
 	public String getNome() {
 		return nome;
 	}
@@ -50,5 +42,15 @@ public class ArmaEntity implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	public Integer getDano() {
+		return dano;
+	}
+
+	public void setDano(Integer dano) {
+		this.dano = dano;
+	}
+	
+	
 
 }
