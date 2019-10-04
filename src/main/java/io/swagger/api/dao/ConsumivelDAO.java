@@ -25,7 +25,7 @@ public class ConsumivelDAO {
 		List<ConsumivelEntity> consumiveisEntity = consumivelRepository.findAll();
 		List<ConsumivelDto> consumiveisDto = new ArrayList<>();
 		consumiveisEntity.forEach(ConsumivelEntity -> {
-			ConsumivelDto ConsumivelDto = consumivelEntityToConsumivelDto((io.swagger.entity.ConsumivelEntity) consumiveisEntity);
+			ConsumivelDto ConsumivelDto = consumivelEntityToConsumivelDto(ConsumivelEntity);
 			consumiveisDto.add(ConsumivelDto);
 
 		});

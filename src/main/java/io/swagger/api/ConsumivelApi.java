@@ -3,7 +3,7 @@
  * https://github.com/swagger-api/swagger-codegen
  * Do not edit the class manually.
  */
-package io.swagger.api.dao;
+package io.swagger.api;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package io.swagger.api.dao;
+package io.swagger.api;
 
 import java.util.List;
 
